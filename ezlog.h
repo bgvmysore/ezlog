@@ -5,13 +5,10 @@
 
 #define EZLOG_VERSION "v1.0.0"
 
-enum ezlog_term_colors {
-    EZLOG_RED    = 31,
-    EZLOG_GREEN  = 32,
-    EZLOG_YELLOW = 33,
-    EZLOG_BLUE   = 34,
-    EZLOG_DEFCOL = 39
-};
+#define EZLOG_ERROR_PREFIX "[ERROR] "
+#define EZLOG_WARN_PREFIX  "[WARN] "
+#define EZLOG_INFO_PREFIX  "[INFO] "
+#define EZLOG_DEBUG_PREFIX "[DEBUG] "
 
 enum ezlog_levels {
     EZLOG_ERROR   = 0,
