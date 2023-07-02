@@ -7,10 +7,6 @@
 #define EZLOG_VERSION "v1.2.0"
 #define EZLOG_MAX_LOGLVL (4U)
 
-#ifndef EZLOG_CONFIG_LOGSTREAM
-#define EZLOG_CONFIG_LOGSTREAM (stdout)
-#endif
-
 #ifndef EZLOG_CONFIG_COLOREN
 #define EZLOG_CONFIG_COLOREN (1U)
 #endif
@@ -30,10 +26,10 @@ enum ezlog_levels {
     EZLOG_DEBUG   = 3
 };
 
-#define EZLOGE(fmtstr, ...) (void)ezlog_eprint(EZLOG_CONFIG_LOGSTREAM, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
-#define EZLOGW(fmtstr, ...) (void)ezlog_wprint(EZLOG_CONFIG_LOGSTREAM, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
-#define EZLOGI(fmtstr, ...) (void)ezlog_iprint(EZLOG_CONFIG_LOGSTREAM, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
-#define EZLOGD(fmtstr, ...) (void)ezlog_dprint(EZLOG_CONFIG_LOGSTREAM, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
+#define EZLOGE(fmtstr, ...) (void)ezlog_eprint(stdout, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
+#define EZLOGW(fmtstr, ...) (void)ezlog_wprint(stdout, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
+#define EZLOGI(fmtstr, ...) (void)ezlog_iprint(stdout, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
+#define EZLOGD(fmtstr, ...) (void)ezlog_dprint(stdout, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
 
 #ifdef EZLOG_CONFIG_NOLOGS
 #undef EZLOGE
