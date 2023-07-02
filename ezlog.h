@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define EZLOG_VERSION "v1.1.0"
+#define EZLOG_VERSION "v1.2.0"
 #define EZLOG_MAX_LOGLVL (4U)
 
 #ifndef EZLOG_CONFIG_LOGSTREAM
@@ -30,10 +30,10 @@ enum ezlog_levels {
     EZLOG_DEBUG   = 3
 };
 
-#define EZLOGE(fmtstr, ...) ezlog_eprint(EZLOG_CONFIG_LOGSTREAM, EZLOG_CONFIG_COLOREN, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
-#define EZLOGW(fmtstr, ...) ezlog_wprint(EZLOG_CONFIG_LOGSTREAM, EZLOG_CONFIG_COLOREN, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
-#define EZLOGI(fmtstr, ...) ezlog_iprint(EZLOG_CONFIG_LOGSTREAM, EZLOG_CONFIG_COLOREN, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
-#define EZLOGD(fmtstr, ...) ezlog_dprint(EZLOG_CONFIG_LOGSTREAM, EZLOG_CONFIG_COLOREN, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
+#define EZLOGE(fmtstr, ...) (void)ezlog_eprint(EZLOG_CONFIG_LOGSTREAM, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
+#define EZLOGW(fmtstr, ...) (void)ezlog_wprint(EZLOG_CONFIG_LOGSTREAM, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
+#define EZLOGI(fmtstr, ...) (void)ezlog_iprint(EZLOG_CONFIG_LOGSTREAM, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
+#define EZLOGD(fmtstr, ...) (void)ezlog_dprint(EZLOG_CONFIG_LOGSTREAM, "%s: " fmtstr, (char*)EZLOG_TAG, ##__VA_ARGS__)
 
 #ifdef EZLOG_CONFIG_NOLOGS
 #undef EZLOGE
@@ -61,12 +61,14 @@ enum ezlog_levels {
 #define EZLOGW(fmtstr, ...)
 #endif
 
-int ezlog_eprint(FILE* stream, bool color_en, const char* _fmt, ...);
+void ezlog_init(bool time_en, bool color_en);
 
-int ezlog_wprint(FILE* stream, bool color_en, const char* _fmt, ...);
+int ezlog_eprint(FILE* stream, const char* _fmt, ...);
 
-int ezlog_iprint(FILE* stream, bool color_en, const char* _fmt, ...);
+int ezlog_wprint(FILE* stream, const char* _fmt, ...);
 
-int ezlog_dprint(FILE* stream, bool color_en, const char* _fmt, ...);
+int ezlog_iprint(FILE* stream, const char* _fmt, ...);
+
+int ezlog_dprint(FILE* stream, const char* _fmt, ...);
 
 #endif //_EZLOG_H_
