@@ -5,6 +5,7 @@ SRC_OBJS := obj/ezlog.o
 DYNAMIC_LIB := lib/libezlog.so
 STATIC_LIB := lib/libezlog.a
 
+.PHONY:
 default: dirs $(SRC_OBJS) $(DYNAMIC_LIB) $(STATIC_LIB)
 
 $(DYNAMIC_LIB): $(SRC_OBJS)
