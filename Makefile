@@ -29,4 +29,4 @@ clean:
 	rm -rf obj
 	rm -rf lib
 
-.PHONY: dirs
+.PHONY: clean dirs

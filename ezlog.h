@@ -1,9 +1,6 @@
 #ifndef _EZLOG_H_
 #define _EZLOG_H_
 
-#include <stdbool.h>
-#include <stdio.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
