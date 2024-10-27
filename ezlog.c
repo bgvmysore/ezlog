@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 
 #define COLOR_TEXT_BEGIN(stream, x) (fprintf(stream, "\033[%dm", x))
 #define COLOR_TEXT_END(stream)      (fprintf(stream, "\033[39m"))
@@ -38,10 +37,14 @@ const char* EZLOG_PREFIX_TABLE[EZLOG_MAX_LOGLVL] = {
 
 static FILE* g_ezlog_stream;
 static bool g_ezlog_color_en = true;
+static enum ezlog_levels g_ezlog_lvl = EZLOG_DEBUG;
 
 int ezlog_print(enum ezlog_levels lvl, const char* _fmt, ...) {
 	int result     = 0;
 	g_ezlog_stream = stdout;
+
+	if (lvl > g_ezlog_lvl)
+		return 0;
 
 	va_list args;
 	va_start(args, _fmt);
