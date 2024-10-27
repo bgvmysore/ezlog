@@ -1,9 +1,6 @@
 #include "ezlog.h"
+
 #include <stdarg.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 #define COLOR_TEXT_BEGIN(stream, x) (fprintf(stream, "\033[%dm", x))
 #define COLOR_TEXT_END(stream)      (fprintf(stream, "\033[39m"))
@@ -39,12 +36,20 @@ static FILE* g_ezlog_stream;
 static bool g_ezlog_color_en = true;
 static enum ezlog_levels g_ezlog_lvl = EZLOG_DEBUG;
 
+void ezlog_init(FILE* stream, bool color_en, enum ezlog_levels lvl) {
+	g_ezlog_stream   = (stream) ? stream : NULL;
+	g_ezlog_color_en = color_en;
+	g_ezlog_lvl      = lvl;
+}
+
 int ezlog_print(enum ezlog_levels lvl, const char* _fmt, ...) {
-	int result     = 0;
-	g_ezlog_stream = stdout;
+	int result = 0;
 
 	if (lvl > g_ezlog_lvl)
 		return 0;
+
+	if (!g_ezlog_stream)
+		g_ezlog_stream = stdout;
 
 	va_list args;
 	va_start(args, _fmt);

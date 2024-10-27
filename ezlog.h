@@ -1,11 +1,14 @@
 #ifndef _EZLOG_H_
 #define _EZLOG_H_
 
+#include <stdbool.h>
+#include <stdio.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define EZLOG_VERSION "v2.1.0"
+#define EZLOG_VERSION "v2.2.0"
 
 enum ezlog_levels {
 	EZLOG_ERROR = 0,
@@ -14,6 +17,8 @@ enum ezlog_levels {
 	EZLOG_DEBUG,
 	EZLOG_MAX_LOGLVL,
 };
+
+void ezlog_init(FILE* stream, bool color_en, enum ezlog_levels lvl);
 
 int ezlog_print(enum ezlog_levels loglvl, const char* _fmt, ...);
 
