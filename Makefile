@@ -28,5 +28,9 @@ dirs: obj lib
 clean:
 	rm -rf obj
 	rm -rf lib
+	rm -rf examples/*.out
 
-.PHONY: clean dirs
+examples: default
+	$(MAKE) -C examples
+
+.PHONY: clean dirs examples

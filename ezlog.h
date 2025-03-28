@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-#define EZLOG_VERSION "v2.2.1"
+#define EZLOG_VERSION "v2.3.0"
 
 enum ezlog_levels {
 	EZLOG_ERROR = 0,
