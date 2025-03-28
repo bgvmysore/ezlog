@@ -59,7 +59,6 @@ int ezlog_print(enum ezlog_levels lvl, const char* _fmt, ...) {
 
 	result += fprintf(g_ezlog_stream, "%s", EZLOG_PREFIX_TABLE[lvl]);
 	result += vfprintf(g_ezlog_stream, _fmt, args);
-	result += fprintf(g_ezlog_stream, "\n");
 
 	if (g_ezlog_color_en)
 		COLOR_TEXT_END(g_ezlog_stream);
